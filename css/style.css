@@ -1,0 +1,29 @@
+#board {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  gap: 5px;
+  width: max-content;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: lightgray;
+}
+
+.cell.player {
+  background-color: red;
+}
+
+.cell.ai {
+  background-color: yellow;
+}
+
+#status {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  font-weight: bold;
+}
