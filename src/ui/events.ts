@@ -2,7 +2,8 @@ import { playMove, resetGame } from "../game/gameState.js";
 import { dropToken } from "../game/board.js";
 import { checkWin } from "../game/rules.js";
 import { renderBoard, renderStatus } from "./render.js";
-import { getRandomMove } from "../ai/aiRandom.js";
+// import { getRandomMove } from "../ai/aiRandom.js";
+import { getSmartMove } from "../ai/aiSmart.js";
 import { GameState } from "../game/types.js";
 
 
@@ -53,7 +54,7 @@ function handleTurn(state: GameState, col: number): void {
 
   // 🤖 IA
   setTimeout(() => {
-    const aiCol = getRandomMove(state.board);
+    const aiCol = getSmartMove(state.board);
     if (aiCol === null) return;
 
     const aiMove = playMove(state, aiCol);
@@ -98,7 +99,7 @@ function handlePlayerMove(state: GameState, col: number): void {
   // 🤖 Tour IA
   setTimeout(() => {
     const aiPlayer = state.currentPlayer;
-    const aiCol = getRandomMove(state.board);
+    const aiCol = getSmartMove(state.board);
 
     if (aiCol === null) return;
 
