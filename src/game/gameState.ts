@@ -1,12 +1,6 @@
-import { Board, Player, GameResult } from "./types.js";
+import { Board, Player, GameResult, GameState, MoveResult } from "./types.js";
 import { createBoard, dropToken, isBoardFull } from "./board.js";
 import { checkWin } from "./rules.js";
-
-export interface GameState {
-  board: Board;
-  currentPlayer: Player;
-  result: GameResult;
-}
 
 /**
  * Initialise une nouvelle partie
@@ -22,29 +16,25 @@ export function createGameState(): GameState {
 /**
  * Joue un coup
  */
-export function playMove(state: GameState, col: number): boolean {
-  // Partie déjà terminée
-  if (state.result !== null) return false;
+export function playMove(state: GameState, col: number): MoveResult | null {
+  if (state.result !== null) return null;
 
-  const success = dropToken(state.board, col, state.currentPlayer);
-  if (!success) return false;
+  const player = state.currentPlayer;
+  const row = dropToken(state.board, col, player);
+
+  if (row === null) return null;
 
   // Vérifier victoire
-  if (checkWin(state.board, state.currentPlayer)) {
-    state.result = state.currentPlayer === 1 ? "win" : "lose";
-    return true;
-  }
-
-  // Vérifier match nul
-  if (isBoardFull(state.board)) {
+  if (checkWin(state.board, player)) {
+    state.result = player === 1 ? "win" : "lose";
+  } else if (isBoardFull(state.board)) {
     state.result = "draw";
-    return true;
+  } else {
+    // Changer de joueur uniquement si la partie continue
+    state.currentPlayer = player === 1 ? 2 : 1;
   }
 
-  // Changer de joueur
-  state.currentPlayer = state.currentPlayer === 1 ? 2 : 1;
-
-  return true;
+  return { row, col, player };
 }
 
 /**

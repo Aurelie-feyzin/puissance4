@@ -31,13 +31,17 @@ export function getAvailableRow(board: Board, col: number): number | null {
  * Place un pion dans la colonne
  * Retourne true si le coup est valide
  */
-export function dropToken(board: Board, col: number, player: Player): boolean {
+export function dropToken(
+  board: Board,
+  col: number,
+  player: Player,
+): number | null {
   const row = getAvailableRow(board, col);
 
-  if (row === null) return false;
+  if (row === null) return null;
 
   board[row][col] = player;
-  return true;
+  return row; // 👈 IMPORTANT
 }
 
 /**

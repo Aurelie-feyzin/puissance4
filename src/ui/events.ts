@@ -1,11 +1,11 @@
-import { GameState, playMove } from "../game/gameState.js";
-import { renderBoard } from "./render.js";
+import { playMove } from "../game/gameState.js";
+import { dropToken } from "../game/board.js";
+import { checkWin } from "../game/rules.js";
+import { renderBoard, renderStatus } from "./render.js";
 import { getRandomMove } from "../ai/aiRandom.js";
-import { renderStatus } from "./render.js";
+import { GameState } from "../game/types.js";
 
-/**
- * Attache les événements au DOM
- */
+
 export function bindEvents(state: GameState): void {
   const boardElement = document.getElementById("board");
 
@@ -17,46 +17,102 @@ export function bindEvents(state: GameState): void {
   boardElement.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
 
-    // Vérifie qu'on clique bien sur une cellule
     if (!target.classList.contains("cell")) return;
 
-    const col = target.dataset.col;
+    const colAttr = target.dataset.col;
+    if (!colAttr) return;
 
-    if (!col) return;
+    const col = parseInt(colAttr, 10);
 
-    handlePlayerMove(state, parseInt(col));
+    handleTurn(state, col);
   });
 }
 
-/**
- * Gère le coup du joueur + IA
- */
-function handlePlayerMove(state: GameState, col: number): void {
-  // Joueur joue
-  const success = playMove(state, col);
-  if (!success) return;
+function handleTurn(state: GameState, col: number): void {
+  if (state.result !== null) return;
 
-  renderBoard(state.board);
+  // 🎯 Joueur
+  const move = playMove(state, col);
+  if (!move) return;
+
+  renderBoard(state.board, move);
   renderStatus(state.result);
 
-  // Si fin de partie → stop
-  if (state.result !== null) {
-    console.log("Fin de partie :", state.result);
+  if (state.result !== null) return;
+
+  // 🤖 IA
+  setTimeout(() => {
+    const aiCol = getRandomMove(state.board);
+    if (aiCol === null) return;
+
+    const aiMove = playMove(state, aiCol);
+    if (!aiMove) return;
+
+    renderBoard(state.board, aiMove);
+    renderStatus(state.result);
+  }, 300);
+}
+
+/**
+ * Gère le tour du joueur + IA avec animation
+ */
+function handlePlayerMove(state: GameState, col: number): void {
+  if (state.result !== null) return;
+
+  const currentPlayer = state.currentPlayer;
+
+  // 🎯 Joueur joue
+  const row = dropToken(state.board, col, currentPlayer);
+  if (row === null) return;
+
+  renderBoard(state.board, { row, col });
+
+  // Vérifier victoire
+  if (checkWin(state.board, currentPlayer)) {
+    state.result = currentPlayer === 1 ? "win" : "lose";
+    renderStatus(state.result);
     return;
   }
 
-  // Tour IA (petit délai pour UX)
+  // Vérifier match nul
+  if (state.board[0].every((cell) => cell !== 0)) {
+    state.result = "draw";
+    renderStatus(state.result);
+    return;
+  }
+
+  // Changer de joueur
+  state.currentPlayer = 2;
+
+  // 🤖 Tour IA
   setTimeout(() => {
-    const aiMove = getRandomMove(state.board);
+    const aiPlayer = state.currentPlayer;
+    const aiCol = getRandomMove(state.board);
 
-    if (aiMove !== null) {
-      playMove(state, aiMove);
-      renderBoard(state.board);
+    if (aiCol === null) return;
+
+    const aiRow = dropToken(state.board, aiCol, aiPlayer);
+    if (aiRow === null) return;
+
+    renderBoard(state.board, { row: aiRow, col: aiCol });
+
+    // Vérifier victoire IA
+    if (checkWin(state.board, aiPlayer)) {
+      state.result = "lose";
       renderStatus(state.result);
+      return;
     }
 
-    if (state.result !== null) {
-      console.log("Fin de partie :", state.result);
+    // Vérifier nul
+    if (state.board[0].every((cell) => cell !== 0)) {
+      state.result = "draw";
+      renderStatus(state.result);
+      return;
     }
+
+    // Retour au joueur
+    state.currentPlayer = 1;
+
+    renderStatus(state.result);
   }, 300);
 }

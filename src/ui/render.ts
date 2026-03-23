@@ -3,15 +3,13 @@ import { Board, Cell, GameResult } from "../game/types.js";
 /**
  * Génère et affiche la grille dans le DOM
  */
-export function renderBoard(board: Board): void {
+export function renderBoard(
+  board: Board,
+  lastMove?: { row: number; col: number },
+): void {
   const boardElement = document.getElementById("board");
+  if (!boardElement) return;
 
-  if (!boardElement) {
-    console.error("Element #board introuvable");
-    return;
-  }
-
-  // Reset du contenu
   boardElement.innerHTML = "";
 
   for (let row = 0; row < board.length; row++) {
@@ -20,12 +18,14 @@ export function renderBoard(board: Board): void {
 
       const cellElement = document.createElement("div");
       cellElement.classList.add("cell");
-
-      // Ajouter info de colonne (utile pour clic plus tard)
       cellElement.dataset.col = col.toString();
 
-      // Ajouter classe selon joueur
       cellElement.classList.add(getCellClass(cellValue));
+
+      // 👉 animation seulement pour le dernier coup
+      if (lastMove && lastMove.row === row && lastMove.col === col) {
+        cellElement.classList.add("fall");
+      }
 
       boardElement.appendChild(cellElement);
     }

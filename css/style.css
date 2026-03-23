@@ -11,6 +11,21 @@
   height: 60px;
   border-radius: 50%;
   background-color: lightgray;
+  transition: transform 0.3s ease;
+}
+
+/* Animation de chute */
+.fall {
+  animation: fall-animation 0.3s ease;
+}
+
+@keyframes fall-animation {
+  from {
+    transform: translateY(-200px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .cell.player {

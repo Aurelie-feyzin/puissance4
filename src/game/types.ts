@@ -21,3 +21,16 @@ export interface Position {
 
 // Résultat de partie
 export type GameResult = "win" | "lose" | "draw" | null;
+
+
+export interface GameState {
+  board: Board;
+  currentPlayer: Player;
+  result: GameResult;
+}
+
+export interface MoveResult {
+  row: number;
+  col: number;
+  player: Player;
+}
