@@ -1,4 +1,4 @@
-import { playMove } from "../game/gameState.js";
+import { playMove, resetGame } from "../game/gameState.js";
 import { dropToken } from "../game/board.js";
 import { checkWin } from "../game/rules.js";
 import { renderBoard, renderStatus } from "./render.js";
@@ -8,12 +8,14 @@ import { GameState } from "../game/types.js";
 
 export function bindEvents(state: GameState): void {
   const boardElement = document.getElementById("board");
+  const restartButton = document.getElementById("restart");
 
   if (!boardElement) {
     console.error("Element #board introuvable");
     return;
   }
 
+  // 🎯 CLIC SUR LE BOARD
   boardElement.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
 
@@ -26,6 +28,15 @@ export function bindEvents(state: GameState): void {
 
     handleTurn(state, col);
   });
+
+  // 🔄 BOUTON RESTART
+  if (restartButton) {
+    restartButton.addEventListener("click", () => {
+      resetGame(state);
+      renderBoard(state.board);
+      renderStatus(state.result);
+    });
+  }
 }
 
 function handleTurn(state: GameState, col: number): void {

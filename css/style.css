@@ -42,3 +42,11 @@
   margin-top: 20px;
   font-weight: bold;
 }
+
+#restart {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
