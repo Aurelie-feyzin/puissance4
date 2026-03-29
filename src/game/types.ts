@@ -1,3 +1,5 @@
+export type Difficulty = "easy" | "medium" | "hard";
+
 // Une case : vide, joueur, ou IA
 export type Cell = 0 | 1 | 2;
 
@@ -22,6 +24,10 @@ export interface Position {
 // Résultat de partie
 export type GameResult = "win" | "lose" | "draw" | null;
 
+export type WinResult = {
+  winner: Player;
+  cells: [Position][];
+};
 
 export interface GameState {
   board: Board;
@@ -33,4 +39,10 @@ export interface MoveResult {
   row: number;
   col: number;
   player: Player;
+}
+
+export interface GameState {
+  board: Board;
+  currentPlayer: Player;
+  result: GameResult;
 }

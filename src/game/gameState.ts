@@ -1,5 +1,5 @@
 import { Board, Player, GameResult, GameState, MoveResult } from "./types.js";
-import { createBoard, dropToken, isBoardFull } from "./board.js";
+import { cloneBoard, createBoard, dropToken, isBoardFull } from "./board.js";
 import { checkWin } from "./rules.js";
 
 /**
@@ -16,13 +16,19 @@ export function createGameState(): GameState {
 /**
  * Joue un coup
  */
-export function playMove(state: GameState, col: number): MoveResult | null {
-  if (state.result !== null) return null;
+export function playMove(state: GameState, col: number): MoveResult {
+  if (state.result !== null)
+  {
+    throw new Error("AI called after game ended");
+  }
 
   const player = state.currentPlayer;
   const row = dropToken(state.board, col, player);
 
-  if (row === null) return null;
+  if (row === null)
+      {
+        throw new Error("AI called after game ended");
+      };
 
   // Vérifier victoire
   if (checkWin(state.board, player)) {
