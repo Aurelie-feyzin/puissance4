@@ -59,6 +59,23 @@ export function getValidColumns(board: Board): number[] {
   return valid;
 }
 
+export function playMoveOnBoard(
+  board: Board,
+  col: number,
+  player: Player,
+): number {
+  // on part du bas de la colonne (gravité)
+  for (let row = board.length - 1; row >= 0; row--) {
+    if (board[row][col] === 0) {
+      board[row][col] = player;
+      return row;
+    }
+  }
+
+  // colonne pleine = erreur logique
+  throw new Error(`Column ${col} is full`);
+}
+
 /**
  * Vérifie si la grille est pleine
  */

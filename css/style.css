@@ -1,18 +1,111 @@
-#board {
-  display: grid;
-  grid-template-columns: repeat(7, 60px);
-  gap: 5px;
-  width: max-content;
-  margin: 20px auto;
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  /* Conteneur des niveaux */
+  .difficulty-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .difficulty-selector input {
+    display: none;
+  }
+
+  .difficulty-selector label {
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #eee;
+    transition: all 0.2s;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .difficulty-selector label:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .difficulty-selector input:checked + label {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+.difficulty-selector input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
+.difficulty-selector label {
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #eee;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.difficulty-selector input:checked + label {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.difficulty-selector label:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+  /* Icônes pour chaque niveau */
+  .easy::before { content: "😎"; }
+  .medium::before { content: "😐"; }
+  .hard::before { content: "😈"; }
+  .expert::before { content: "💀"; }
+
+  /* Grille du jeu */
+  #board {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .cell {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    transition: transform 0.3s ease;
+  }
+
+  button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+/*
 .cell {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background-color: lightgray;
   transition: transform 0.3s ease;
-}
+}*/
 
 /* Animation de chute */
 .fall {
