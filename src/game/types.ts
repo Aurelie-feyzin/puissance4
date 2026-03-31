@@ -6,11 +6,13 @@ export type Cell = 0 | 1 | 2;
 // Un joueur (humain ou IA)
 export type Player = 1 | 2;
 
-export enum CellValue {
-  EMPTY = 0,
-  PLAYER = 1,
-  AI = 2,
-}
+export const CellValue = {
+  EMPTY: 0,
+  PLAYER: 1,
+  AI: 2,
+} as const;
+
+export type CellValue = (typeof CellValue)[keyof typeof CellValue];
 
 // La grille complète
 export type Board = Cell[][];

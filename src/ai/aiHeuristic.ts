@@ -1,6 +1,6 @@
-import { GameState, Player } from "../game/types.js";
 import { getValidColumns, cloneBoard, dropToken } from "../game/board.js";
 import { checkWin } from "../game/rules.js";
+import type { Player, GameState } from "../game/types.js";
 
 
 const AI_PLAYER: Player = 2;

@@ -1,6 +1,6 @@
-import { Board, Player, GameResult, GameState, MoveResult } from "./types.js";
-import { cloneBoard, createBoard, dropToken, isBoardFull } from "./board.js";
+import { createBoard, dropToken, isBoardFull } from "./board.js";
 import { checkWin } from "./rules.js";
+import type { GameState, MoveResult } from "./types.js";
 
 /**
  * Initialise une nouvelle partie

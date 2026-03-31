@@ -1,4 +1,4 @@
-import { Board, Cell, GameResult } from "../game/types.js";
+import type { Board, Cell, GameResult } from "../game/types";
 
 /**
  * Génère et affiche la grille dans le DOM

@@ -1,4 +1,4 @@
-import { Cell, Player } from "./types.js";
+import type { Cell, Player } from "./types";
 
 export const ROWS = 6;
 export const COLS = 7;

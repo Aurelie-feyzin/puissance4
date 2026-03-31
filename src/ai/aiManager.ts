@@ -1,7 +1,7 @@
-import { GameState } from "../game/types";
 import { getRandomMove } from "./aiRandom.js";
 import { getHeuristicMove } from "./aiHeuristic.js";
 import { getBestMove } from "./aiMinimax.js";
+import type { GameState } from "../game/types.js";
 
 export type Difficulty = "easy" | "medium" | "hard" | "expert";
 

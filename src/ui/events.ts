@@ -1,8 +1,7 @@
 import { playMove, resetGame } from "../game/gameState.js";
 import { renderBoard, renderStatus } from "./render.js";
-import { GameState } from "../game/types.js";
-import { aiPlay } from "../ai/aiManager.js";
-import { Difficulty } from "../ai/aiManager.js";
+import { type GameState } from "../game/types.js";
+import { aiPlay, type Difficulty } from "../ai/aiManager.js";
 
 let difficulty: Difficulty;
 

@@ -1,7 +1,7 @@
-import { Board, Player, GameState } from "../game/types.js";
 import { ROWS, COLS } from "../game/constants.js";
 import { checkWin, isDraw } from "../game/rules.js";
 import { cloneBoard, getValidColumns, playMoveOnBoard } from "../game/board.js";
+import type { Player, GameState, Board } from "../game/types.js";
 
 const AI_PLAYER: Player = 2;
 const HUMAN_PLAYER: Player = 1;

@@ -1,6 +1,6 @@
 import { getBestMove } from "../ai/aiMinimax.js";
 import { checkWin } from "../game/rules.js";
-import { Board } from "../game/types.js";
+import type { Board } from "../game/types.js";
 
 const testBoard: Board = [
   [0, 0, 0, 0, 0, 0, 0],
