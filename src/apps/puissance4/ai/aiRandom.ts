@@ -1,5 +1,5 @@
-import { getValidColumns } from "../game/board.js";
-import type { GameState } from "../game/types.js";
+import { getValidColumns } from "../game/board";
+import type { GameState } from "../game/types";
 
 /**
  * Retourne une colonne jouable aléatoire

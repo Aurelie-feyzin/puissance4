@@ -1,41 +1,41 @@
-import { playMove, resetGame } from "../game/gameState.js";
 import { renderBoard, renderStatus } from "./render.js";
-import { type GameState } from "../game/types.js";
 import { aiPlay, type Difficulty } from "../ai/aiManager.js";
+import { resetGame, playMove } from "../game/gameState.js";
+import type { GameState } from "../game/types.js";
 
 let difficulty: Difficulty;
 
 export function bindEvents(state: GameState): void {
   const boardElement = document.getElementById("board");
   const restartButton = document.getElementById("restart");
-  
+
   if (!boardElement) {
     console.error("Element #board introuvable");
     return;
   }
 
-const difficultyInputs = document.querySelectorAll(
-  'input[name="difficulty"]',
-) as NodeListOf<HTMLInputElement>;
+  const difficultyInputs = document.querySelectorAll(
+    'input[name="difficulty"]',
+  ) as NodeListOf<HTMLInputElement>;
 
-// 🔹 Initialisation depuis le DOM
-const checkedInput = document.querySelector(
-  'input[name="difficulty"]:checked',
-) as HTMLInputElement;
+  // 🔹 Initialisation depuis le DOM
+  const checkedInput = document.querySelector(
+    'input[name="difficulty"]:checked',
+  ) as HTMLInputElement;
 
-if (checkedInput) {
-  difficulty = checkedInput.value as Difficulty;
-}
+  if (checkedInput) {
+    difficulty = checkedInput.value as Difficulty;
+  }
 
-// 🔹 Écoute des changements
-difficultyInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    if (input.checked) {
-      difficulty = input.value as Difficulty;
-      console.log("Nouvelle difficulté :", difficulty);
-    }
+  // 🔹 Écoute des changements
+  difficultyInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input.checked) {
+        difficulty = input.value as Difficulty;
+        console.log("Nouvelle difficulté :", difficulty);
+      }
+    });
   });
-});
   // 🎯 CLIC SUR LE BOARD
   boardElement.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;

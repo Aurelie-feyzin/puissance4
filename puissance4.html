@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Puissance 4</title>
+     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/apps/puissance4/css/style.css" />
+</head>
+
+<body>
+<div id="app">
+    <h1>Puissance 4</h1>
+<div class="difficulty-selector">
+  <input type="radio" id="easy" name="difficulty" value="easy" checked>
+  <label for="easy" class="easy">Facile</label>
+
+  <input type="radio" id="medium" name="difficulty" value="medium">
+  <label for="medium" class="medium">Moyen</label>
+
+  <input type="radio" id="hard" name="difficulty" value="hard">
+  <label for="hard" class="hard">Difficile</label>
+
+  <input type="radio" id="expert" name="difficulty" value="expert">
+  <label for="expert" class="expert">Expert</label>
+</div>
+    <div id="board"></div>
+    <div id="status"></div>
+    <button id="restart">Rejouer</button>
+</div>
+    <script type="module" src="/src/apps/puissance4/main.ts"></script>
+</body>
+
+</html>

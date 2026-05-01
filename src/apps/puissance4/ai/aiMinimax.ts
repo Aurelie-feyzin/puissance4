@@ -1,7 +1,8 @@
-import { ROWS, COLS } from "../game/constants.js";
-import { checkWin, isDraw } from "../game/rules.js";
-import { cloneBoard, getValidColumns, playMoveOnBoard } from "../game/board.js";
-import type { Player, GameState, Board } from "../game/types.js";
+import { getValidColumns, cloneBoard, playMoveOnBoard } from "../game/board";
+import { COLS, ROWS } from "../game/constants";
+import { checkWin, isDraw } from "../game/rules";
+import type { Player, GameState, Board } from "../game/types";
+
 
 const AI_PLAYER: Player = 2;
 const HUMAN_PLAYER: Player = 1;
@@ -37,9 +38,8 @@ function minimax(
   alpha: number,
   beta: number,
 ): number {
-
-if (checkWin(board, AI_PLAYER)) return MAX_SCORE;
-if (checkWin(board, HUMAN_PLAYER)) return MIN_SCORE;
+  if (checkWin(board, AI_PLAYER)) return MAX_SCORE;
+  if (checkWin(board, HUMAN_PLAYER)) return MIN_SCORE;
   if (isDraw(board)) return 0;
   if (depth === 0) return evaluateBoard(board);
 
