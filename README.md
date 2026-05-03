@@ -62,11 +62,11 @@ This allows the player to progressively challenge the AI.
 
 ## Features
 
-* Playable directly in the browser
-* AI opponent with multiple difficulty levels
-* Responsive UI (desktop + mobile)
-* Lightweight implementation
-* Deployed with GitHub Pages
+- Playable directly in the browser
+- AI opponent with multiple difficulty levels
+- Responsive UI (desktop + mobile)
+- Lightweight implementation
+- Deployed with GitHub Pages
 
 ---
 
@@ -114,10 +114,10 @@ http://localhost:5173
 
 ## Technologies
 
-* JavaScript / TypeScript
-* HTML / CSS
-* Vite
-* GitHub Pages
+- JavaScript / TypeScript
+- HTML / CSS
+- Vite
+- GitHub Pages
 
 ---
 
@@ -173,11 +173,11 @@ Cela permet d’augmenter progressivement le niveau de challenge.
 
 ## Fonctionnalités
 
-* Jeu jouable directement dans le navigateur
-* IA avec plusieurs niveaux de difficulté
-* Interface responsive (desktop + mobile)
-* Implémentation simple et légère
-* Déploiement via GitHub Pages
+- Jeu jouable directement dans le navigateur
+- IA avec plusieurs niveaux de difficulté
+- Interface responsive (desktop + mobile)
+- Implémentation simple et légère
+- Déploiement via GitHub Pages
 
 ---
 
@@ -225,8 +225,7 @@ http://localhost:5173
 
 ## Technologies utilisées
 
-* JavaScript / TypeScript
-* HTML / CSS
-* Vite
-* GitHub Pages
-
+- JavaScript / TypeScript
+- HTML / CSS
+- Vite
+- GitHub Pages
