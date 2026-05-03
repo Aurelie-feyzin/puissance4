@@ -1,4 +1,4 @@
-export type Difficulty = "easy" | "medium" | "hard";
+export type Difficulty = 'easy' | 'medium' | 'hard';
 
 // Une case : vide, joueur, ou IA
 export type Cell = 0 | 1 | 2;
@@ -24,7 +24,7 @@ export interface Position {
 }
 
 // Résultat de partie
-export type GameResult = "win" | "lose" | "draw" | null;
+export type GameResult = 'win' | 'lose' | 'draw' | null;
 
 export type WinResult = {
   winner: Player;

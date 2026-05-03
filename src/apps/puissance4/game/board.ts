@@ -1,5 +1,5 @@
-import { ROWS, COLS } from "./constants.js";
-import type { Board, Player } from "./types.js";
+import { ROWS, COLS } from './constants.js';
+import type { Board, Player } from './types.js';
 
 /**
  * Crée une grille vide

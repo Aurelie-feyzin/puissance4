@@ -1,16 +1,16 @@
-import { renderBoard, renderStatus } from "./render.js";
-import { aiPlay, type Difficulty } from "../ai/aiManager.js";
-import { resetGame, playMove } from "../game/gameState.js";
-import type { GameState } from "../game/types.js";
+import { renderBoard, renderStatus } from './render.js';
+import { aiPlay, type Difficulty } from '../ai/aiManager.js';
+import { resetGame, playMove } from '../game/gameState.js';
+import type { GameState } from '../game/types.js';
 
 let difficulty: Difficulty;
 
 export function bindEvents(state: GameState): void {
-  const boardElement = document.getElementById("board");
-  const restartButton = document.getElementById("restart");
+  const boardElement = document.getElementById('board');
+  const restartButton = document.getElementById('restart');
 
   if (!boardElement) {
-    console.error("Element #board introuvable");
+    console.error('Element #board introuvable');
     return;
   }
 
@@ -29,18 +29,18 @@ export function bindEvents(state: GameState): void {
 
   // 🔹 Écoute des changements
   difficultyInputs.forEach((input) => {
-    input.addEventListener("change", () => {
+    input.addEventListener('change', () => {
       if (input.checked) {
         difficulty = input.value as Difficulty;
-        console.log("Nouvelle difficulté :", difficulty);
+        console.log('Nouvelle difficulté :', difficulty);
       }
     });
   });
   // 🎯 CLIC SUR LE BOARD
-  boardElement.addEventListener("click", (event) => {
+  boardElement.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
 
-    if (!target.classList.contains("cell")) return;
+    if (!target.classList.contains('cell')) return;
 
     const colAttr = target.dataset.col;
     if (!colAttr) return;
@@ -52,7 +52,7 @@ export function bindEvents(state: GameState): void {
 
   // 🔄 BOUTON RESTART
   if (restartButton) {
-    restartButton.addEventListener("click", () => {
+    restartButton.addEventListener('click', () => {
       resetGame(state);
       renderBoard(state.board);
       renderStatus(state.result);

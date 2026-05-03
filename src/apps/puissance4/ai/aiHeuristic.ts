@@ -1,7 +1,6 @@
-import { getValidColumns, cloneBoard, dropToken } from "../game/board";
-import { checkWin } from "../game/rules";
-import type { Player, GameState } from "../game/types";
-
+import { getValidColumns, cloneBoard, dropToken } from '../game/board';
+import { checkWin } from '../game/rules';
+import type { Player, GameState } from '../game/types';
 
 const AI_PLAYER: Player = 2;
 const HUMAN_PLAYER: Player = 1;
@@ -14,7 +13,7 @@ export function getHeuristicMove(state: GameState): number {
   const validColumns = getValidColumns(board);
 
   if (validColumns.length === 0) {
-    throw new Error("No valid moves available");
+    throw new Error('No valid moves available');
   }
 
   // 1️⃣ Gagner immédiatement
